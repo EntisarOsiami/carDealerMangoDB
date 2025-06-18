@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "f77f7337-d470-4e29-8525-468dcc35fb8c",
+		"name": "cars",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45961247"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/cars",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"01F8R2H6ZY2PQ4E5EK1K4N3Y0A\",\r\n    \"dealerId\": \"01F8R2H6ZY2PQ4E5EK1K4N3Y0A\",\r\n    \"carMakerId\": \"01F8R2H6ZY2PQ4E5EK1K4N3Y0B\",\r\n    \"name\": \"Sedan\",\r\n    \"price\": \"25000\",\r\n    \"year\": \"2020-05-20\",\r\n    \"color\": \"red\",\r\n    \"wheelsCount\": 4\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/cars",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/cars/:id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/cars/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cars",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "01JXZPGYCP6KWGB37S0FXY8118"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/cars/:id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n    \"name\": \"bmw\",\r\n    \"price\": \"23000\"\r\n \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/cars/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cars",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "01JXZPGYCP6KWGB37S0FXY8118"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/cars/:id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/cars/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cars",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "01JXZPTJK13WWAWZ1GGCFCXWBK"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/cars/maker/:carMakerId",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/cars/maker/:carMakerId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cars",
+						"maker",
+						":carMakerId"
+					],
+					"variable": [
+						{
+							"key": "carMakerId",
+							"value": "01F8R2H6ZY2PQ4E5EK1K4N3Y0B"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/cars/dealer/:dealerId",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/cars/dealer/:dealerId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cars",
+						"dealer",
+						":dealerId"
+					],
+					"variable": [
+						{
+							"key": "dealerId",
+							"value": "01F8R2H6ZY2PQ4E5EK1K4N3Y0A"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/cars/dealer/:dealerId/maker/:carMakerId",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/cars/dealer/:dealerId/maker/:carMakerId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"cars",
+						"dealer",
+						":dealerId",
+						"maker",
+						":carMakerId"
+					],
+					"variable": [
+						{
+							"key": "dealerId",
+							"value": "01F8R2H6ZY2PQ4E5EK1K4N3Y0A"
+						},
+						{
+							"key": "carMakerId",
+							"value": "01F8R2H6ZY2PQ4E5EK1K4N3Y0B"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
