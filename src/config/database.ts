@@ -14,5 +14,5 @@ const uri = "mongodb+srv://HiFiTest:root@cluster0.m3m5sfk.mongodb.net/?retryWrit
     await mongoose.disconnect();
   }
 }
-databaseConnection().catch(console.dir);
+
 

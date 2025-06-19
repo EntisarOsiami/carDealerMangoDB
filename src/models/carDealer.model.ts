@@ -1,8 +1,21 @@
+import mongoose, { Schema } from "mongoose";
+
 export interface carDealer {
-  id: string;
   name: string;
   email: string;
-  city: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  city: String;
 }
+
+const carDealerSchema = new Schema<carDealer>(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    city: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const carDealerCollection = mongoose.model<carDealer>('CarDealer', carDealerSchema);
+export default carDealerCollection;

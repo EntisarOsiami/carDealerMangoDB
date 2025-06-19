@@ -1,25 +1,36 @@
 import { Request, Response } from "express"
 import { OK, CREATED, BAD_REQUEST, NOT_FOUND } from "../utils/http-status"
+import carMakerCollection from "../models/carMake.model"
 
-// controllers for managing car makers {create, get all, get by id, update, delete}
 
-// controller for creating a new car maker{country, brand}
 export const createCarMaker = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const { country, brand , name} = req.body
+    const {  brand , name} = req.body
 
-    if (!country || !brand) {
+    if (!name || !brand) {
       res.status(BAD_REQUEST).json({
         success: false,
         error: "all fields are required",
       })
       return
     }
+    const data ={
+      
+      brand,
+      name
+    }
 
-    const carMaker = carMakerStore.createCarMaker({ country, brand ,name})
+    const carMaker = await carMakerCollection.insertOne(data)
+    if (!carMaker) {
+      res.status(BAD_REQUEST).json({
+        success: false,
+        error: "Failed to create car maker",
+      })
+      return
+    }
     res.status(CREATED).json({
       success: true,
       data: carMaker,
@@ -33,13 +44,19 @@ export const createCarMaker = async (
   }
 }
 
-// controller for getting all car makers
 export const getCarMakers = async (
   _req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const carMakers = carMakerStore.getAllCarMakers()
+    const carMakers = await carMakerCollection.find()
+    if (carMakers.length === 0) {
+      res.status(NOT_FOUND).json({
+        success: false,
+        error: "No car makers found",
+      })
+      return
+    }
     res.status(OK).json({
       success: true,
       data: carMakers,
@@ -53,14 +70,13 @@ export const getCarMakers = async (
   }
 }
   
-// controller for getting a car maker by id from carMakerStore
 export const getCarMakerByID = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
    const {id} = req.params
-    const carMaker = carMakerStore.getCarMakerByID(id)
+    const carMaker = await carMakerCollection.findById(id)
     if (!carMaker) {
       res.status(NOT_FOUND).json({
         success: false,
@@ -82,13 +98,20 @@ export const getCarMakerByID = async (
   }
 }
 
-// controller for updating a car maker by id from carMakerStore
 export const updateCarMaker = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const carMaker = carMakerStore.updateCarMaker(req.params.id, req.body)
+    const { country, brand, name } = req.body  
+    const { id } = req.params
+    const data = {
+      country,
+      brand,
+      name
+    }
+    const carMaker =  await carMakerCollection.findByIdAndUpdate(id, data, {
+      new: true,})
     if (!carMaker) {
       res.status(NOT_FOUND).json({
         success: false,
@@ -107,13 +130,13 @@ export const updateCarMaker = async (
     })
   }
 }
-// controller for deleting a car maker by id from carMakerStore
 export const deleteCarMaker = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const deleted = carMakerStore.deleteCarMaker(req.params.id)
+    const { id } = req.params
+    const deleted =  await carMakerCollection.findByIdAndDelete(id)
     if (!deleted) {
       res.status(NOT_FOUND).json({
         success: false,

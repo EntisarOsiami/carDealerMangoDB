@@ -1,28 +1,37 @@
-import mongoose, { Mongoose,Schema } from "mongoose";
+import mongoose, { Schema, Types } from 'mongoose';
+
 export interface Car {
-  dealerId: string;
-  carMakerId: string;
+  dealerId: Types.ObjectId;
+  carMakerId: Types.ObjectId;
   name: string;
-  price: string;
+  price: number;
   year: Date;
   color: string;
   wheelsCount: number;
-
 }
 
-export const carSchema = new Schema<Car>({
-  dealerId: { type: String, required: true },
-  carMakerId: { type: String, required: true },
-  name: { type: String, required: true },
-  price: { type: String, required: true },
-  year: { type: Date, required: true },
-  color: { type: String, required: true },
-  wheelsCount: { type: Number},
+const carSchema = new Schema<Car>(
+  {
+    dealerId: {
+      type: Schema.Types.ObjectId,
+      ref: 'CarDealer',
+      required: true,
+    },
+    carMakerId: {
+      type: Schema.Types.ObjectId,
+      ref: 'CarMaker',
+      required: true,
+    },
+    name: { type: String, required: true },
+    price: { type: Number, required: true },
+    year: { type: Date, required: true },
+    color: { type: String, required: true },
+    wheelsCount: { type: Number, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-}, {
-  timestamps: true,
-  versionKey: false
-});
-
-const carCollection =mongoose.model<Car>('Car', carSchema);
+const carCollection = mongoose.model<Car>('Car', carSchema);
 export default carCollection;
